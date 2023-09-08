@@ -15,6 +15,7 @@ public class ScreenManager : MonoBehaviour
     float[,] fire;
     float[,] matter;
     float[,] smoke;
+    bool run;
 
 
     const float FIRE_BURN_RATE = 0.008f; //how fast can the fire burn the matter down
@@ -239,9 +240,6 @@ public class ScreenManager : MonoBehaviour
         }
 
 
-
-
-
             void SpreadFire()
         {
             for (int x = 0; x < width; x++)
@@ -424,7 +422,6 @@ public class ScreenManager : MonoBehaviour
 
     float targetFps = 200;
     float timePassed = 0;
-    bool run;
     void Update()
     {
 
