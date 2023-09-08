@@ -396,17 +396,26 @@ public class ScreenManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
+
+    float targetFps = 200;
+    float timePassed = 0;
     void Update()
     {
+        
         if (Input.GetKeyDown("space"))
         {
             ProgressStep();
         }
-
-        if (Input.GetKey("a"))
+        timePassed += Time.deltaTime;
+        if (timePassed > (1f/targetFps))
         {
-            ProgressStep();
+            timePassed -= (1f / targetFps);
+            if (Input.GetKey("a"))
+            {
+                ProgressStep();
+            }
         }
+
     }
 }
