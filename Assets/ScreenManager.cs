@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class ScreenManager : MonoBehaviour
     const float FIRE_SPREAD_RATE = 0.0058f; //how fast does the fire spread
     const float SMOKE_DECAY_RATE = 0.0166f;
     const float SMOKE_SPREAD_RATE = 0.00166f;
+    float WIND_STRENGTH = 0.1266f;
+
+    [SerializeField]
+    Slider windSlider;
+
     void Awake()
     {
         width =  (int) (DEFAULT_WIDTH * res);
@@ -83,15 +89,33 @@ public class ScreenManager : MonoBehaviour
     private void SimulationStep()
     {
 
-
         DecayFire();
         DecaySmoke();
+        ApplyWind();
         BurnMatter();
         SpreadFire();
         SpreadSmoke();
         SmokeNoise();
 
         CapValues();
+
+
+        void ApplyWind()
+        {
+            for (int x = 1; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (matter[x-1,y] < 0.2f && fire[x-1,y] < 0.2f)
+                    {
+                        //take a bit of the smoke and move it to the right
+                        smoke[x -1, y] += smoke[x, y] * WIND_STRENGTH;
+                        smoke[x, y] -= smoke[x, y] * WIND_STRENGTH;
+                    }
+
+                }
+            }
+        }
 
 
         void SmokeNoise()
@@ -400,9 +424,13 @@ public class ScreenManager : MonoBehaviour
 
     float targetFps = 200;
     float timePassed = 0;
+    bool run;
     void Update()
     {
-        
+
+        WIND_STRENGTH = windSlider.value;
+
+
         if (Input.GetKeyDown("space"))
         {
             ProgressStep();
@@ -416,6 +444,13 @@ public class ScreenManager : MonoBehaviour
                 ProgressStep();
             }
         }
-
+        if (Input.GetKeyDown("q"))
+        {
+            run = true;
+        }
+        if (run)
+        {
+            ProgressStep();
+        }
     }
 }
