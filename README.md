@@ -3,7 +3,7 @@
 
 Original Cellular Automata based algorithm
 
-The best algorithm in the history of humanity
+The best algorithm in the history of humanity!
 
 # September 8th 2023 update - Added wind
 
