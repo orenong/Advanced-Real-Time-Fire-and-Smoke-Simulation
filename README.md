@@ -1,7 +1,7 @@
 # Advanced Real-Time Fire and Smoke Simulation
  Real-time simulation of smoke and fire in c#
 
-Original Cellular Automata based algorithm
+Original Cellular Automata based algorithm.
 
 The best algorithm in the history of humanity!
 
