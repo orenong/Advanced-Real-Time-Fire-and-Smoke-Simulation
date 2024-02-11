@@ -1,5 +1,5 @@
 # Advanced Real-Time Fire and Smoke Simulation
- Real-time simulation of smoke and fire in c#
+ Real-time simulation of smoke and fire in c#.
 
 Original Cellular Automata based algorithm.
 
